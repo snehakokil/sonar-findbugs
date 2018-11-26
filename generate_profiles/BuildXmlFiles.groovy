@@ -97,7 +97,7 @@ def writeRules(String rulesSetName,List<Plugin> plugins,List<String> includedBug
 
 
     //Output file
-    File f = new File("out_sonar","rules-"+rulesSetName+".xml")
+    File f = new File("src/main/resources/org/sonar/plugins/findbugs","rules-"+rulesSetName+".xml")
     printf("Building ruleset %s (%s)%n", rulesSetName, f.getCanonicalPath())
 
     //XML construction of the rules file
@@ -208,7 +208,7 @@ writeRules("fbcontrib", [CONTRIB], [])
 
 def writeProfile(String profileName,List<String> includedBugs,List<String> excludedBugs = []) {
 
-    File f = new File("out_sonar","profile-"+profileName+".xml")
+    File f = new File("src/main/resources/org/sonar/plugins/findbugs","profile-"+profileName+".xml")
     printf("Building profile %s (%s)%n",profileName,f.getCanonicalPath())
 
     def countBugs=0;
