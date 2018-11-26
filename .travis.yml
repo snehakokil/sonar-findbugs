@@ -19,10 +19,10 @@ script:
 jobs:
   include:
     - stage: smoke-test
-      script:
-        - 'mvn package && docker-compose -f src/smoke-test/docker-compose.yml --project-directory . run --rm test-lts'
-    - script:
-        - 'mvn package && docker-compose -f src/smoke-test/docker-compose.yml --project-directory . run --rm test-latest'
+      name: 'on SonarQube LTS (6.7.x)'
+      script: 'mvn package && docker-compose -f src/smoke-test/docker-compose.yml --project-directory . run --rm test-lts'
+    - name: 'on SonarQube latest (7.x)'
+      script: 'mvn package && docker-compose -f src/smoke-test/docker-compose.yml --project-directory . run --rm test-latest'
     - stage: analysis
       script:
         - mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar -B -e -V -Dsonar.version=$SONAR_VERSION -Dsonar-java.version=$SONAR_JAVA_VERSION
